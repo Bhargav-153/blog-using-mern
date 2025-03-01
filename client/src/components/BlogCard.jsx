@@ -1,23 +1,27 @@
 import React from 'react'
 import { Card, CardContent } from './ui/card'
 import { Badge } from "@/components/ui/badge"
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import { Avatar, AvatarImage } from './ui/avatar'
 import { IoCalendarOutline } from "react-icons/io5";
+import moment from 'moment'
+import { Link } from 'react-router-dom';
+import { RouteBlogDetails } from '@/helpers/RouteName';
 
 
 
 
 
-const BlogCard = ({props}) => {
- 
+const BlogCard = ({ props }) => {
+
   return (
+    <Link to={RouteBlogDetails(props.category.slug, props.slug)}>
     <Card className='pt-5'>
-      <CardContent>
+      <CardContent >
         <div className='flex item-center justify-between'>
-          <div className='flex justify-between item-center'>
+          <div className='flex justify-between item-center text-xl gap-2 font-bold ' >
             <Avatar>
-              <AvatarImage src={props.author.avatar || "https://github.com/shadcn.png"}/>
+              <AvatarImage src={props.author.avatar || "https://github.com/shadcn.png"} />
             </Avatar>
             <span>{props.author.name}</span>
           </div>
@@ -26,16 +30,21 @@ const BlogCard = ({props}) => {
           }
         </div>
 
-        <div>features</div>
+        <div className=' my-2 '>
+          <img src={props.featuredImage} className='rounded ' />
+        </div>
         <div>
-          <p> <IoCalendarOutline />
-          <span>date</span>
+          <p className='flex item-center gap-2 mb-2'> 
+            <IoCalendarOutline />
+            <span>{moment(props.createdAt).format('DD-MM-YYYY')}</span>
           </p>
-          <h2 className='text-2xl font-bold line-clam-2'>title will be here</h2>
-         
+          <h2 className='text-2xl font-bold line-clam-2'>{props.title}</h2>
+
         </div>
       </CardContent>
     </Card>
+    </Link>
+    
   )
 }
 
