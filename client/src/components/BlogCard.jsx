@@ -7,6 +7,7 @@ import { IoCalendarOutline } from "react-icons/io5";
 import moment from 'moment'
 import { Link } from 'react-router-dom';
 import { RouteBlogDetails } from '@/helpers/RouteName';
+import usericon from '@/assets/images/user.png'
 
 
 
@@ -21,7 +22,7 @@ const BlogCard = ({ props }) => {
         <div className='flex item-center justify-between'>
           <div className='flex justify-between item-center text-xl gap-2 font-bold ' >
             <Avatar>
-              <AvatarImage src={props.author.avatar || "https://github.com/shadcn.png"} />
+              <AvatarImage src={props.author.avatar || usericon} />
             </Avatar>
             <span>{props.author.name}</span>
           </div>

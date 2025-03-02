@@ -16,8 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import 
-usericon from "@/assets/images/user.png";
+import usericon from "@/assets/images/user.png";
 import { FaUser } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import { IoLogOutOutline } from "react-icons/io5";
@@ -78,7 +77,7 @@ return (
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Avatar>
-              <AvatarImage src={user.user.avatar || usericon} alt="User Avatar" />
+              <AvatarImage src={user.user.avatar || usericon}  />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>
