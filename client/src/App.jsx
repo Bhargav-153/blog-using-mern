@@ -12,7 +12,7 @@ import EditCategory from './pages/Category/EditCategory'
 import EditBlog from './pages/Blog/EditBlog'
 import BlogDetails from './pages/Blog/BlogDetails'
 import AddBlog from './pages/Blog/AddBlog'
-import SingleBlogDetails from './pages/Category/SingleBlogDetails'
+import SingleBlogDetails from './pages/SingleBlogDetails'
 
 const App = () => {
   return (
