@@ -8,12 +8,16 @@ import moment from 'moment'
 import { Link } from 'react-router-dom';
 import { RouteBlogDetails } from '@/helpers/RouteName';
 import usericon from '@/assets/images/user.png'
+// import { Route } from 'react-router-dom';
 
 
 
 
 
 const BlogCard = ({ props }) => {
+  if (!props || !props.category || !props.slug) {
+    return null; // or some fallback UI
+  }
 
   return (
     <Link to={RouteBlogDetails(props.category.slug, props.slug)}>

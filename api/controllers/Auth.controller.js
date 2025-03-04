@@ -19,8 +19,7 @@ export const register = async (req, res, next) => {
     const user = new User({
       name,
       email,
-      password: hashedPassword,
-      photoURL
+      password: hashedPassword
     })
     await user.save();
 
@@ -44,9 +43,9 @@ export const Login = async (req, res, next) => {
     }
     const hashedPassword = user.password
 
-    const comparePassword = bcryptjs.compare(password, hashedPassword)
+    const comparePassword = bcryptjs.compareSync(password, hashedPassword)
     if (!comparePassword) {
-      return next(handleError(404, 'Invalid credentials'))
+      return next(handleError(401, 'Invalid credentials'))
     }
 
     const token = jwt.sign({
@@ -68,8 +67,8 @@ export const Login = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      newUser,
-      message: 'User logged in successfully'
+      user: newUser,
+      message: 'Login successful.'
     })
 
 
@@ -78,77 +77,66 @@ export const Login = async (req, res, next) => {
 
   }
 }
-
 export const GoogleLogin = async (req, res, next) => {
   try {
-      const { name, email, avatar } = req.body;
+      const { name, email, avatar } = req.body
       let user
-      user = await User.findOne({ email });
+      user = await User.findOne({ email })
       if (!user) {
-          //create new user
-
+          //  create new user 
           const password = Math.random().toString()
           const hashedPassword = bcryptjs.hashSync(password)
           const newUser = new User({
-              name, email, password:hashedPassword, avatar
+              name, email, password: hashedPassword, avatar
           })
 
           user = await newUser.save()
-          //create new user
 
       }
-
-     
-
       const token = jwt.sign({
-          id: user._id,
+          _id: user._id,
           name: user.name,
           email: user.email,
-          avatar: user.avatar,
-      }, process.env.JWT_SECRET);
+          avatar: user.avatar
+      }, process.env.JWT_SECRET)
+
 
       res.cookie('access_token', token, {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
           sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
           path: '/'
-      });
+      })
 
       const newUser = user.toObject({ getters: true })
-      delete newUser.password 
-
+      delete newUser.password
       res.status(200).json({
           success: true,
           user: newUser,
-          message: 'Login successful.',
-      });
+          message: 'Login successful.'
+      })
 
   } catch (error) {
-      next(handleError(500, error.message));
+      next(handleError(500, error.message))
   }
 }
 
 export const Logout = async (req, res, next) => {
   try {
-      
-      res.clearCookie('access_token',{
+
+      res.clearCookie('access_token', {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
           sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
           path: '/'
-      });
-
-    
+      })
 
       res.status(200).json({
           success: true,
-          message: 'Logout successful.',
-      });
+          message: 'Logout successful.'
+      })
 
   } catch (error) {
-      next(handleError(500, error.message));
+      next(handleError(500, error.message))
   }
 }
-
-
-
