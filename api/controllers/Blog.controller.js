@@ -166,6 +166,28 @@ export const getRelatedBlog = async (req, res, next) => {
 }
 
 
+export const getBlogByCategory = async (req, res, next) => {
+  try {
+
+    const { category} = req.params
+    const categoryData = await Category.findOne({ slug: category })
+    if(!categoryData){
+      return next(404,'category data not found')
+    }
+    const categoryId = categoryData._id
+    const blog = await Blog.find({ category:categoryId}).populate('author', 'name avatar role').populate('category', 'name slug').lean().exec()
+    res.status(200).json({
+      blog, 
+      categoryData
+    })
+
+  } catch (error) {
+    next(handleError(500, error.message))
+
+  }
+}
+
+
 
 
 

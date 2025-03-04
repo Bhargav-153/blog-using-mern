@@ -4,6 +4,8 @@ export const RouteSignUp = '/sign-up';
 export const RouteProfile = '/profile';
 export const RouteCategoryDetails = '/categories';
 export const RouteAddCategory = '/category/add';
+
+
 export const RouteEditCategory = (category_id) =>{
   if(category_id){
     return `/category/edit/${category_id}`
@@ -28,5 +30,14 @@ export const RouteBlogDetails = (category,blog) =>{
     return '/blog/:category/:blog'
   }else{
     return `/blog/${category}/${blog}`
+  }
+}
+
+
+export const RouteBlogByCategory = (category) =>{
+  if(!category){
+    return '/blog/:category'
+  }else{
+    return `/blog/${category}`
   }
 }

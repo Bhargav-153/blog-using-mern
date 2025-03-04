@@ -17,7 +17,7 @@ import { FaBlog } from "react-icons/fa6";
 import { FaComment } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
-import { RouteBlog, RouteCategoryDetails } from "@/helpers/RouteName";
+import { RouteBlog, RouteBlogByCategory, RouteCategoryDetails } from "@/helpers/RouteName";
 import { useFetch } from "@/hooks/useFetch";
 import { getEnv } from "@/helpers/getEnv";
 
@@ -89,7 +89,7 @@ function AppSidebar() {
               <SidebarMenuItem key={category._id}>
                 <SidebarMenuButton>
                   <GoDotFill />
-                  <Link to="">{category.name}</Link>
+                  <Link to={RouteBlogByCategory(category.slug)}>{category.name}</Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             )}
