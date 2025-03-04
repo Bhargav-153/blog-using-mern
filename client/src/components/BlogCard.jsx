@@ -23,7 +23,7 @@ const BlogCard = ({ props }) => {
     <Link to={RouteBlogDetails(props.category.slug, props.slug)}>
     <Card className='pt-5'>
       <CardContent >
-        <div className='flex item-center justify-between'>
+        <div className='flex item-center justify-between '>
           <div className='flex justify-between item-center text-xl gap-2 font-bold ' >
             <Avatar>
               <AvatarImage src={props.author.avatar || usericon} />
