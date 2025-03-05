@@ -17,7 +17,7 @@ import { FaBlog } from "react-icons/fa6";
 import { FaComment } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
-import { RouteBlog, RouteBlogByCategory, RouteCategoryDetails, RouteCommentDetails } from "@/helpers/RouteName";
+import { RouteBlog, RouteBlogByCategory, RouteCategoryDetails, RouteCommentDetails, RouteUser } from "@/helpers/RouteName";
 import { useFetch } from "@/hooks/useFetch";
 import { getEnv } from "@/helpers/getEnv";
 
@@ -73,7 +73,7 @@ function AppSidebar() {
             <SidebarMenuItem>
               <SidebarMenuButton>
                 <FaUser />
-                <Link to="">users</Link>
+                <Link to={RouteUser}>users</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
 
