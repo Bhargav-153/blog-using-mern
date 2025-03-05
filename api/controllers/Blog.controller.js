@@ -148,13 +148,13 @@ export const getBlog = async (req, res, next) => {
 export const getRelatedBlog = async (req, res, next) => {
   try {
 
-    const { category,blog} = req.params
+    const { category, blog } = req.params
     const categoryData = await Category.findOne({ slug: category })
-    if(!categoryData){
-      return next(404,'category data not found')
+    if (!categoryData) {
+      return next(404, 'category data not found')
     }
     const categoryId = categoryData._id
-    const relatedBlog = await Blog.find({ category:categoryId,slug:{$ne:blog}}).lean().exec()
+    const relatedBlog = await Blog.find({ category: categoryId, slug: { $ne: blog } }).lean().exec()
     res.status(200).json({
       relatedBlog
     })
@@ -169,16 +169,34 @@ export const getRelatedBlog = async (req, res, next) => {
 export const getBlogByCategory = async (req, res, next) => {
   try {
 
-    const { category} = req.params
+    const { category } = req.params
     const categoryData = await Category.findOne({ slug: category })
-    if(!categoryData){
-      return next(404,'category data not found')
+    if (!categoryData) {
+      return next(404, 'category data not found')
     }
     const categoryId = categoryData._id
-    const blog = await Blog.find({ category:categoryId}).populate('author', 'name avatar role').populate('category', 'name slug').lean().exec()
+    const blog = await Blog.find({ category: categoryId }).populate('author', 'name avatar role').populate('category', 'name slug').lean().exec()
     res.status(200).json({
-      blog, 
+      blog,
       categoryData
+    })
+
+  } catch (error) {
+    next(handleError(500, error.message))
+
+  }
+}
+
+
+
+export const search = async (req, res, next) => {
+  try {
+
+    const { q } = req.query
+
+    const blog = await Blog.find({ title: { $regex: q, $options: 'i' } }).populate('author', 'name avatar role').populate('category', 'name slug').lean().exec()
+    res.status(200).json({
+      blog,
     })
 
   } catch (error) {

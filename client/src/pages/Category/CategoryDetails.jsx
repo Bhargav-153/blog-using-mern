@@ -94,10 +94,6 @@ const CategoryDetails = () => {
 
                   </TableRow>
 
-
-
-
-
                 )
                 :
                 <TableRow>

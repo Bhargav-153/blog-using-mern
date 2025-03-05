@@ -5,7 +5,7 @@ export const addcomment = async (req, res, next) => {
   try {
     const { user, blogid, comment } = req.body
     const newComment = new Comment({
-      user:user,
+      user: user,
       blogid: blogid,
       comment: comment
     })
@@ -47,5 +47,31 @@ export const commentCount = async (req, res, next) => {
     })
   } catch (error) {
     next(handleError(500, error.message))
+  }
+}
+
+export const getAllComments = async (req, res, next) => {
+  try {
+    const comments = await Comment.find({  }).populate('blogid', 'title').populate('user', 'name')
+
+    res.status(200).json({
+      comments
+    })
+  } catch (error) {
+    next(handleError(500, error.message))
+  }
+}
+
+export const deleteComment = async (req, res, next) => {
+  try {
+      const { commentid } = req.params
+      await Comment.findByIdAndDelete(commentid)
+
+      res.status(200).json({
+          success: true,
+          message: 'Data deleted'
+      })
+  } catch (error) {
+      next(handleError(500, error.message))
   }
 }
