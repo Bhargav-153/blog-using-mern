@@ -1,23 +1,23 @@
 import React from 'react'
 import { Card, CardContent } from './ui/card'
 import { Badge } from "@/components/ui/badge"
-// import { useSelector } from 'react-redux'
-import { Avatar, AvatarImage } from './ui/avatar'
+import { Avatar, AvatarImage } from "./ui/avatar";
 import { IoCalendarOutline } from "react-icons/io5";
 import moment from 'moment'
 import { Link } from 'react-router-dom';
 import { RouteBlogDetails } from '@/helpers/RouteName';
 import usericon from '@/assets/images/user.png'
-// import { Route } from 'react-router-dom';
+// import { Avatar } from './ui/avatar'
+// import { AvatarImage } from '@radix-ui/react-avatar'
 
 
 
 
 
 const BlogCard = ({ props }) => {
-  if (!props || !props.category || !props.slug) {
-    return null; // or some fallback UI
-  }
+  // if (!props || !props.category || !props.slug) {
+  //   return null; // or some fallback UI
+  // }
 
   return (
     <Link to={RouteBlogDetails(props.category.slug, props.slug)}>
@@ -26,11 +26,11 @@ const BlogCard = ({ props }) => {
         <div className='flex item-center justify-between '>
           <div className='flex justify-between item-center text-xl gap-2 font-bold ' >
             <Avatar>
-              <AvatarImage src={props.author.avatar || usericon} />
+              <AvatarImage src={props.author?.avatar || usericon} />
             </Avatar>
-            <span>{props.author.name}</span>
+            <span>{props.author?.name || "Unknown"}</span>
           </div>
-          {props.author.role === 'admin' &&
+          {props.author?.role === 'admin' &&
             <Badge variant="outline" className="bg-rose-500">Admin</Badge>
           }
         </div>
@@ -54,3 +54,5 @@ const BlogCard = ({ props }) => {
 }
 
 export default BlogCard
+
+

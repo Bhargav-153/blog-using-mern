@@ -17,16 +17,17 @@ import { FaBlog } from "react-icons/fa6";
 import { FaComment } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
-import { RouteBlog, RouteBlogByCategory, RouteCategoryDetails, RouteCommentDetails, RouteUser } from "@/helpers/RouteName";
+import { RouteBlog, RouteBlogByCategory, RouteCategoryDetails, RouteCommentDetails, RouteIndex, RouteUser } from "@/helpers/RouteName";
 import { useFetch } from "@/hooks/useFetch";
 import { getEnv } from "@/helpers/getEnv";
+import { useSelector } from "react-redux";
 
 
 
 
 
 function AppSidebar() {
-
+  const user = useSelector(state => state.user)
   const { data: categoryData } = useFetch(`${getEnv('VITE_API_BASE_URL')}/category/all-category`, {
     method: 'get',
     credentials: 'include'
@@ -44,18 +45,14 @@ function AppSidebar() {
             <SidebarMenuItem>
               <SidebarMenuButton>
                 <FaHome />
-                <Link to="">Home</Link>
+                <Link to={RouteIndex}>Home</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
 
-            <SidebarMenuItem>
-              <SidebarMenuButton>
-                <BiSolidCategory />
 
-                <Link to={RouteCategoryDetails}>categories</Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-
+            {user && user.isLoggedIn 
+            ? <>
+            
             <SidebarMenuItem>
               <SidebarMenuButton>
                 <FaBlog />
@@ -69,6 +66,20 @@ function AppSidebar() {
                 <Link to={RouteCommentDetails}>Comments</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
+            </>
+            :
+            <></>
+          }
+          {user && user.isLoggedIn && user.user.role === 'admin'
+          ? <>
+
+            <SidebarMenuItem>
+              <SidebarMenuButton>
+                <BiSolidCategory />
+                <Link to={RouteCategoryDetails}>categories</Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+
 
             <SidebarMenuItem>
               <SidebarMenuButton>
@@ -76,6 +87,10 @@ function AppSidebar() {
                 <Link to={RouteUser}>users</Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
+            </>
+            :
+            <></>
+          }
 
           </SidebarMenu>
         </SidebarGroup>
