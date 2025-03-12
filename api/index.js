@@ -8,11 +8,13 @@ import UserRoute from './routes/User.route.js'
 import CategoryRoute from './routes/Category.route.js'
 import BlogRoute from './routes/Blog.route.js'
 import CommentRoute from './routes/Comment.route.js'
-import BlogLikeRoute from './routes/BlogLike.route.js'
+import BlogLikeRoute from './routes/Bloglike.route.js'
+
 
 dotenv.config()
 
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT || 3041
+
 const app = express()
 
 app.use(cookieParser())

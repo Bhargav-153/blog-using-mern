@@ -20,10 +20,6 @@ const EditCategory = () => {
     credentials: 'include'
   }, [category_id])
 
-
-
-
-
   const formSchema = z.object({
     name: z.string().min(3, 'name must be at least 3 characters long'),
     slug: z.string().min(3, 'slug must be at least 3 characters long'),
@@ -45,8 +41,6 @@ const EditCategory = () => {
       form.setValue('slug', slug)
     }
   },[categoryName])
-
-  console.log(categoryData)
 
   useEffect(() => {
     if(categoryData){
