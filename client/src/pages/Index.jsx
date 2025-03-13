@@ -3,8 +3,10 @@ import Loading from '@/components/Loading'
 import { getEnv } from '@/helpers/getEnv'
 import { useFetch } from '@/hooks/useFetch'
 import React from 'react'
+import Index from "./pages/index";
 
-const index = () => {
+
+const Index = () => {
     const { data: blogData, loading, error } = useFetch(`${getEnv('VITE_API_BASE_URL')}/blog/blogs`, {
       method: 'get',
       credentials: 'include'
@@ -24,4 +26,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index
