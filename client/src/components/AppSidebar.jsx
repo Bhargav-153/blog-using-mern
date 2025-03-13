@@ -37,7 +37,7 @@ function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className="bg-white">
-        <img src={logo} width={120}></img>
+        <img src={logo} width={40}></img>
       </SidebarHeader>
       <SidebarContent className="bg-white">
         <SidebarGroup >
