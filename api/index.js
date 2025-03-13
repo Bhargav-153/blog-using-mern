@@ -42,9 +42,7 @@ app.use('/api/blog-like', BlogLikeRoute)
 
 
 mongoose.connect(process.env.MONGODB_CONN, { 
-  dbName: "blog123",
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+  dbName: "blog123"
  })
   .then(() => console.log('Database connected'))
   .catch(err => console.log('Database Connection Failed', err))
