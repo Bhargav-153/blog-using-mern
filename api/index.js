@@ -25,8 +25,6 @@ app.use(express.json())
 app.use(cors({
   origin: process.env.FRONTEND_URL, // Update this to match your client's origin
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
 }))
 
 // route setup
