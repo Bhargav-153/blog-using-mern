@@ -1,5 +1,5 @@
 import cloudinary from "../config/cloudinary.js"
-import User from '../models/User.model.js';
+import User from '../models/user.model.js';
 import {handleError} from "../helpers/handleError.js"
 import bcryptjs from 'bcryptjs'
 

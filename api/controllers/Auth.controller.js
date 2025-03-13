@@ -1,5 +1,5 @@
 import { handleError } from '../helpers/handleError.js'
-import User from '../models/User.model.js'
+import User from '../models/user.model.js'
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
