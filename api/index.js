@@ -19,9 +19,14 @@ const app = express()
 
 app.use(cookieParser())
 app.use(express.json())
+
+
+
 app.use(cors({
   origin: process.env.FRONTEND_URL, // Update this to match your client's origin
-  credentials: true
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }))
 
 // route setup
@@ -36,7 +41,11 @@ app.use('/api/blog-like', BlogLikeRoute)
 
 
 
-mongoose.connect(process.env.MONGODB_CONN, { dbName: "blog123" })
+mongoose.connect(process.env.MONGODB_CONN, { 
+  dbName: "blog123",
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+ })
   .then(() => console.log('Database connected'))
   .catch(err => console.log('Database Connection Failed', err))
 
