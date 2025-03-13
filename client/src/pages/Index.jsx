@@ -3,7 +3,7 @@ import Loading from '@/components/Loading'
 import { getEnv } from '@/helpers/getEnv'
 import { useFetch } from '@/hooks/useFetch'
 import React from 'react'
-import Index from "./pages/index";
+// import Index from "./pages/index";
 
 
 const Index = () => {
