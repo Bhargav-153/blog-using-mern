@@ -1,24 +1,41 @@
-import { Button } from './components/ui/button'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Layout from './Layout/Layout'
-import { RouteAddCategory, RouteBlog, RouteBlogAdd, RouteBlogByCategory, RouteBlogDetails, RouteBlogEdit, RouteCategoryDetails, RouteCommentDetails, RouteEditCategory, RouteIndex, RouteProfile, RouteSearch, RouteSignIn, RouteSignUp, RouteUser } from './helpers/RouteName'
-import Index from './pages/Index'
-import SignIn from './pages/SignIn'
-import SignUp from './pages/SignUp'
-import Profile from './pages/Profile'
-import AddCategory from './pages/Category/AddCategory'
-import CategoryDetails from './pages/Category/CategoryDetails'
-import EditCategory from './pages/Category/EditCategory'
-import EditBlog from './pages/Blog/EditBlog'
-import BlogDetails from './pages/Blog/BlogDetails'
-import AddBlog from './pages/Blog/AddBlog'
-import SingleBlogDetails from './pages/SingleBlogDetails'
-import BlogByCategory from './pages/Blog/BlogByCategory'
-import SearchResult from './pages/SearchResult'
-import Comments from './pages/Comments'
-import User from './pages/User'
-import AuthRouteProtection from './components/AuthRouteProtection'
-import OnlyAdminAllowed from './components/OnlyAdminAllowed'
+import { Button } from "./components/ui/button";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./Layout/Layout";
+import {
+  RouteAddCategory,
+  RouteBlog,
+  RouteBlogAdd,
+  RouteBlogByCategory,
+  RouteBlogDetails,
+  RouteBlogEdit,
+  RouteCategoryDetails,
+  RouteCommentDetails,
+  RouteEditCategory,
+  RouteIndex,
+  RouteProfile,
+  RouteSearch,
+  RouteSignIn,
+  RouteSignUp,
+  RouteUser,
+} from "./helpers/RouteName";
+import Index from "./pages/Index";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
+import AddCategory from "./pages/Category/AddCategory";
+import CategoryDetails from "./pages/Category/CategoryDetails";
+import EditCategory from "./pages/Category/EditCategory";
+import EditBlog from "./pages/Blog/EditBlog";
+import BlogDetails from "./pages/Blog/BlogDetails";
+import AddBlog from "./pages/Blog/AddBlog";
+import SingleBlogDetails from "./pages/SingleBlogDetails";
+import BlogByCategory from "./pages/Blog/BlogByCategory";
+import SearchResult from "./pages/SearchResult";
+import Comments from "./pages/Comments";
+import User from "./pages/User";
+import AuthRouteProtection from "./components/AuthRouteProtection";
+import OnlyAdminAllowed from "./components/OnlyAdminAllowed";
+import axios from "./lib/axios";
 
 const App = () => {
   return (
@@ -30,10 +47,6 @@ const App = () => {
           <Route path={RouteBlogDetails()} element={<SingleBlogDetails />} />
           <Route path={RouteBlogByCategory()} element={<BlogByCategory />} />
           <Route path={RouteSearch()} element={<SearchResult />} />
-
-
-
-
 
           <Route element={<AuthRouteProtection />}>
             <Route path={RouteProfile} element={<Profile />} />
@@ -51,12 +64,11 @@ const App = () => {
           </Route>
         </Route>
 
-
         <Route path={RouteSignIn} element={<SignIn />} />
         <Route path={RouteSignUp} element={<SignUp />} />
       </Routes>
     </BrowserRouter>
-  )
-}
+  );
+};
 
-export default App
+export default App;
